@@ -1,14 +1,30 @@
 // Vendors
-import React from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 // Components
 import BaseModal from './Global/BaseModal';
+import LoginForm from './LoginForm';
+
+// Styles
+const CloseButton = styled.div`
+  cursor: pointer;
+`;
 
 const AuthModal = ({ showModal, closeModal }: any): JSX.Element => {
-  console.log(showModal);
+  const [signUpMode, setSignUpMode] = useState<boolean>(false);
+  const handleClose = () => {
+    closeModal();
+  };
   return (
-    <BaseModal showModal={showModal} closeModal={closeModal}>
-      <div>this is the modal content</div>
+    <BaseModal showModal={showModal}>
+      <CloseButton
+        onClick={() => {
+          handleClose();
+        }}>
+        X
+      </CloseButton>
+      <LoginForm />
     </BaseModal>
   );
 };
